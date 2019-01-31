@@ -2,8 +2,10 @@ package dao;
 
 import java.util.List;
 
+import domain.CustomerDTO;
+
 public interface CustomerDAO {
-	public void insertCustomer(CustomerDAO cus);
+	public void insertCustomer(CustomerDTO cus);
 	public List<CustomerDAO> selectCustomerlist(); 
 	public List<CustomerDAO> selectCustomer(String searchWord);
 	public CustomerDAO selectCustomers(String searchWord);

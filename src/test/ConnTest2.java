@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import enums.EmployeeSQL;
 import enums.Props;
 
 
-public class ConnTest {
+public class ConnTest2 {
 
 	public static void main(String[] args) {
 		Connection conn = null;
@@ -18,11 +19,10 @@ public class ConnTest {
 		
 		try {
 			Class.forName(Props.ORA_DRIVER.getValue());
-			conn = DriverManager.getConnection(Props.DB_URL.getValue(),
+			rs = DriverManager.getConnection(Props.DB_URL.getValue(),
 					Props.DB_USER.getValue(), 
-					Props.DB_PASS.getValue());
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT COUNT(*) AS COUNT FROM EMPLOYEES");
+					Props.DB_PASS.getValue()).prepareStatement(EmployeeSQL.COUNT.toString())
+					.executeQuery();
 			String count = "";
 			while(rs.next()) {
 				count = rs.getString("COUNT");
@@ -32,7 +32,7 @@ public class ConnTest {
 			e.printStackTrace();
 		}finally {
 			try {
-				conn.close();
+				rs.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

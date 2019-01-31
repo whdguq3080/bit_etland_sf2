@@ -5,7 +5,7 @@ import java.util.List;
 import domain.EmployeeDTO;
 
 public interface EmployeeDAO {
-	public void insertEmployee(EmployeeDAO emp);
+	public void insertEmployee(EmployeeDTO emp);
 	public List<EmployeeDAO> selectEmployeesList(); 
 	public List<EmployeeDAO> selectEmployees(String searchWord);
 	public EmployeeDAO selectEmployee(String searchWord);
