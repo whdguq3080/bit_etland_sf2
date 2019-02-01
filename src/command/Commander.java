@@ -9,12 +9,15 @@ public class Commander {
 	public static Command order(HttpServletRequest request,HttpServletResponse response) {
 		Command cmd = null;
 		System.out.println("====3.커맨더진입=====");
-		switch (Action.valueOf(request.getParameter("cmd").toUpperCase())) {
+		switch (Action
+				.valueOf(request
+				.getParameter("cmd")
+				.toUpperCase())) {
 		case MOVE:
-			cmd = new MoveCommand(request);
+			cmd = new Command();
 			break;
 		case REGISTER :
-			cmd = new MoveCommand(request);
+			cmd = new CreateCommand(request,response);
 			break;
 		default:
 			break;

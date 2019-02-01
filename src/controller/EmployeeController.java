@@ -24,21 +24,18 @@ public class EmployeeController extends HttpServlet {
 		
 		System.out.println("======1.컨트롤러 진입 =======");
 		Receiver.init(request,response);
-		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
+		switch (Action.valueOf(Receiver
+				.cmd
+				.getAction()
+				.toUpperCase())) {
 		case MOVE:
+			System.out.println("==move==");
 			Carrier.forword(request, response);
 			break;
 		case REGISTER:	
-			EmployeeDTO emp = new EmployeeDTO();
-			emp.setName(request.getParameter("name"));
-			emp.setManager(request.getParameter("manager"));
-			emp.setBirthDate(request.getParameter("birthday"));
-			emp.setPhoto(request.getParameter("photo"));
-			emp.setNotes(request.getParameter("notes"));
-			service.registEmployee(emp);
+			System.out.println("==register==");
 			Carrier.forword(request, response);
 			break;	
-
 		default:
 			break;
 		}
