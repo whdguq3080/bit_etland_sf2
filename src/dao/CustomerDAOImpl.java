@@ -2,9 +2,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import domain.CustomerDTO;
+import enums.CustomerSQL;
 import enums.EmployeeSQL;
 import enums.Vendor;
 import factory.DatabaseFactory;
@@ -19,21 +22,22 @@ public class CustomerDAOImpl implements CustomerDAO{
 	@Override
 	public void insertCustomer(CustomerDTO cus) {
 		try {
-			String sql = String.format(EmployeeSQL.COUNT.toString(),cus.getCustomerID()
-					,cus.getCustomersName());
-			System.out.println("실생황 쿼리"+sql);
-			Connection conn = DatabaseFactory
-			.createDatabase(Vendor.ORACLE)
-			.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, cus.getCustomerID());
-			pstmt.setString(2, cus.getCustomersName());
-			int rs = pstmt.executeUpdate();
-			System.out.println((rs==1) ? "입력성공" : "입력실패");
-		}catch(Exception e) {
+			PreparedStatement ps = DatabaseFactory
+				.createDatabase(Vendor.ORACLE)
+				.getConnection()
+				.prepareStatement(CustomerSQL.SIGNUP.toString());
+			ps.setString(1, cus.getCustomerID());
+			ps.setString(2, cus.getCustomersName());
+			ps.setString(3, cus.getAddress());
+			ps.setString(4, cus.getCity());
+			ps.setString(5, cus.getPostalCode());
+			ps.setString(6, cus.getPassword());
+			ps.setString(7, cus.getSsn());
+			int rs = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
-		
+		}
 	}
 
 	@Override
@@ -61,9 +65,25 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public boolean existsCustomer(String searchword) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean existsCustomer(CustomerDTO cus) {
+		boolean ok = false;
+		System.out.println("==커스터머 dao 진입==");
+		try {
+			PreparedStatement ps=DatabaseFactory.createDatabase(Vendor.ORACLE)
+			.getConnection()
+			.prepareStatement(CustomerSQL.SIGNIN.toString());
+			ps.setString(1, cus.getCustomerID());
+			ps.setString(2, cus.getPassword());
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				ok = true;
+				System.out.println("ddddd"+ok);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ok;
 	}
 
 	@Override

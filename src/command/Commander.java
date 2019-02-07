@@ -14,14 +14,21 @@ public class Commander {
 				.getParameter("cmd")
 				.toUpperCase())) {
 		case MOVE:
-			cmd = new Command();
+			cmd = new Command(request,response);
 			break;
 		case REGISTER :
+			cmd = new CreateCommand(request,response);
+			break;
+		case ACCESS : case SIGNIN :
+			cmd = new ExistCommand(request,response);
+			break;
+		case SIGNUP :
 			cmd = new CreateCommand(request,response);
 			break;
 		default:
 			break;
 		}
+		System.out.println("커맨더 내부 : "+Receiver.cmd.getView());
 		return cmd;
 	}
 	

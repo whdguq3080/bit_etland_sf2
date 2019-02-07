@@ -14,23 +14,21 @@
 	<table id="cust_tab">
 	  <tr>
 	    <th>No.</th>
-	    <th>고객번호</th>
-	    <th>이 름</th>
-	    <th>닉네임</th>
+	    <th>회원이름</th>
+	    <th>비밀번호</th>
+	    <th>주소</th>
 	    <th>도시</th>
-	    <th>상세주소</th>
 	    <th>우편번호</th>
-	    <th>국 가</th>
+	    <th>주민번호</th>
 	  </tr>
 	  <tr>
 	    <td>1</td>
+	    <td>이종협</td>
 	    <td>1234</td>
-	    <td>홍길동</td>
-	    <td>hong</td>
-	    <td>서울시 강남구</td>
-	    <td>강남대로 1</td>
-	    <td>12345</td>
-	    <td>대한민국</td>
+	    <td>파주시</td>
+	    <td>경기도</td>
+	    <td>111-111</td>
+	    <td>900101-1</td>
 	  </tr>
 	  
 	</table>

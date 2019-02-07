@@ -1,7 +1,8 @@
-/factory/
-/dao/
-/enums/
-/command/
 /controller/
-/test/
+/command/
+/dao/
 /service/
+/enums/
+/customerCommand/
+/domain/
+/test/

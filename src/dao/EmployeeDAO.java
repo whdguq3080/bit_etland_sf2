@@ -10,7 +10,7 @@ public interface EmployeeDAO {
 	public List<EmployeeDAO> selectEmployees(String searchWord);
 	public EmployeeDAO selectEmployee(String searchWord);
 	public int countEmployees();
-	public boolean existsEmployee(String searchword);
+	public boolean existsEmployee(EmployeeDTO emp);
 	public void updateEmployee(EmployeeDAO emp);
 	public void deleteEmployee(EmployeeDAO emp);
 }

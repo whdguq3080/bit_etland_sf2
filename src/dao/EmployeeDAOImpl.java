@@ -2,6 +2,8 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import domain.EmployeeDTO;
@@ -19,9 +21,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	public void insertEmployee(EmployeeDTO emp) {
 		// 입력순서 : MANAGER,NAME,BIRTH_DATE,PHOTO,NOTES
 		try {
-			String sql = String.format(EmployeeSQL.REGISTER.toString(),emp.getManager()
-					,emp.getName(),emp.getBirthDate()
-					,emp.getPhoto(),emp.getNotes());
+			String sql = EmployeeSQL.REGISTER.toString();
 			System.out.println("실생황 쿼리"+sql);
 			Connection conn = DatabaseFactory
 			.createDatabase(Vendor.ORACLE)
@@ -40,7 +40,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	}
 	@Override
 	public List<EmployeeDAO> selectEmployeesList() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -61,22 +61,53 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 	@Override
-	public boolean existsEmployee(String searchword) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean existsEmployee(EmployeeDTO emp) {
+		boolean ok = false;
+		try {
+			PreparedStatement pstmt = 
+					DatabaseFactory.createDatabase(Vendor.ORACLE)
+					.getConnection()
+					.prepareStatement(EmployeeSQL.ACCESS.toString());
+			pstmt.setString(1, emp.getEmployeesID());
+			pstmt.setString(2, emp.getName());
+			if(pstmt.executeQuery().next()) {
+				ok= true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println("접근허용 :" + ok);
+		return ok; 
 	}
 
 	@Override
 	public void updateEmployee(EmployeeDAO emp) {
-		// TODO Auto-generated method stub
-		
+		try {
+		String sql = "";	
+		PreparedStatement ps =DatabaseFactory
+				.createDatabase(Vendor.ORACLE)
+				.getConnection()
+				.prepareStatement(sql);
+				ps.setString(1, "");
+				int rs = ps.executeUpdate();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	}
 	@Override
 	public void deleteEmployee(EmployeeDAO emp) {
-		// TODO Auto-generated method stub
-		
+		try {
+		String sql="";
+		PreparedStatement ps = 
+				DatabaseFactory.createDatabase(Vendor.ORACLE)
+					.getConnection().prepareStatement(sql);
+			ps.setString(1, "");
+			int rs = ps.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}		
 	}
-
-}

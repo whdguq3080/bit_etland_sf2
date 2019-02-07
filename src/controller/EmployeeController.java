@@ -21,23 +21,9 @@ public class EmployeeController extends HttpServlet {
     EmployeeService service = EmployeeServiceImpl.getInstance();   
 	protected void service(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		
 		System.out.println("======1.컨트롤러 진입 =======");
 		Receiver.init(request,response);
-		switch (Action.valueOf(Receiver
-				.cmd
-				.getAction()
-				.toUpperCase())) {
-		case MOVE:
-			System.out.println("==move==");
-			Carrier.forword(request, response);
-			break;
-		case REGISTER:	
-			System.out.println("==register==");
-			Carrier.forword(request, response);
-			break;	
-		default:
-			break;
-		}
+		System.out.println("======2.컨트롤러 forward 직전 =======");
+		Carrier.forword(request, response);
 	}
 }

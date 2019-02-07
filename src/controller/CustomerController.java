@@ -23,20 +23,8 @@ public class CustomerController extends HttpServlet {
 	CustomerService service = CustomerServiceImpl.getInstance();
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Receiver.init(request,response);
-		switch (Action.valueOf(Receiver.cmd.getAction().toUpperCase())) {
-		case MOVE:
-			Carrier.forword(request, response);
-			break;
-		case REGISTER:	
-			CustomerDTO cus = new CustomerDTO();
-			cus.setCustomerID(request.getParameter("manager"));
-			cus.setCustomersName(request.getParameter("name"));
-			service.registCustomer(cus);
-			Carrier.forword(request, response);
-			break;	
-
-		default:
-			break;
-		}
+		Carrier.forword(request, response);	
+	
 	}
-}
+	}
+

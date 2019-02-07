@@ -3,18 +3,37 @@ package command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.CustomerDTO;
 import domain.EmployeeDTO;
+import enums.Action;
+import service.CustomerServiceImpl;
 import service.EmployeeServiceImpl;
 public class CreateCommand extends Command{
 		public CreateCommand(HttpServletRequest request,HttpServletResponse response) {
 		super(request,response);
-		System.out.println("==Create 커맨드 진입==");
-		EmployeeDTO emp = new EmployeeDTO();
-		emp.setName(request.getParameter("name"));
-		emp.setManager(request.getParameter("manager"));
-		emp.setBirthDate(request.getParameter("birthday"));
-		emp.setPhoto(request.getParameter("photo"));
-		emp.setNotes(request.getParameter("notes"));
-		EmployeeServiceImpl.getInstance().registEmployee(emp);
+		switch (Action.valueOf(request.getParameter("cmd").toUpperCase())) {
+		case REGISTER:
+			EmployeeDTO emp = new EmployeeDTO();
+			emp.setPhoto(request.getParameter("photo"));
+			emp.setManager(request.getParameter("manager"));
+			emp.setName(request.getParameter("name"));
+			emp.setBirthDate(request.getParameter("birthday"));
+			emp.setNotes(request.getParameter("desc"));
+			EmployeeServiceImpl.getInstance().registEmployee(emp);
+			break;
+		case SIGNUP:
+			CustomerDTO cus = new CustomerDTO();
+			cus.setCustomerID(request.getParameter("customerID"));
+			cus.setCustomersName(request.getParameter("customersName"));
+			cus.setPassword(request.getParameter("password"));
+			cus.setAddress(request.getParameter("address"));
+			cus.setCity(request.getParameter("city"));
+			cus.setPostalCode(request.getParameter("postalCode"));
+			cus.setSsn(request.getParameter("ssn"));
+			CustomerServiceImpl.getInstance().registCustomer(cus);
+			break;
+		default:
+			break;
+		}		
 	}
 }
