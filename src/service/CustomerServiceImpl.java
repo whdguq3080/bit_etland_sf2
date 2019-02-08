@@ -6,32 +6,20 @@ import dao.CustomerDAOImpl;
 import domain.CustomerDTO;
 
 public class CustomerServiceImpl implements CustomerService {
-	private static CustomerServiceImpl Instance = new CustomerServiceImpl();
-	public CustomerServiceImpl() {
+	private static CustomerServiceImpl instance = new CustomerServiceImpl();
+	private CustomerServiceImpl() {
 		dao = CustomerDAOImpl.getInstance();
 		}
-	public static CustomerServiceImpl getInstance() {return Instance;}
+	public static CustomerServiceImpl getInstance() {return instance;}
 	CustomerDAOImpl dao;
+	
 	@Override
 	public void registCustomer(CustomerDTO cus) {
-		dao.insertCustomer(cus);
+			dao.insertCustomer(cus);
 	}
 
 	@Override
 	public List<CustomerDTO> bringCustomerList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<CustomerDTO> retrieveCustomer(String searchWord) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public CustomerDTO retrieveCustomers(String searchWord) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -43,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	public boolean existsCustomer(CustomerDTO cus) {
 	
-		return 	dao.existsCustomer(cus);
+		return 	dao.existsCustomerID(cus);
 	}
 
 	@Override
@@ -57,6 +45,9 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	@Override
+	public CustomerDTO retrieveCustomers(CustomerDTO cus) {
+		return dao.selectCustomers(cus);
+	}
 
 }

@@ -46,21 +46,36 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 
 	@Override
 	public List<EmployeeDAO> selectEmployees(String searchWord) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public EmployeeDAO selectEmployee(String searchWord) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public int countEmployees() {
-		// TODO Auto-generated method stub
-		return 0;
+		int count = 0;
+		try {
+			String sql = "";
+			PreparedStatement ps =DatabaseFactory
+			.createDatabase(Vendor.ORACLE)
+			.getConnection()
+			.prepareStatement(sql);
+			ps.setString(1, "");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return count;
 	}
+	
 	@Override
 	public boolean existsEmployee(EmployeeDTO emp) {
 		boolean ok = false;

@@ -11,7 +11,7 @@
 	    <div class="grid-item" id="item_1">회원아이디</div>
 	    <div class="grid-item" id="item_2"><input type="text" id="customerID" name="customerID" value="lee" ></div>
 	    <div class="grid-item" id="item_3">비밀번호</div>
-	    <div class="grid-item" id="item_4"><input type="text" id="password" name="password" value="1234" ></div>
+	    <div class="grid-item" id="item_4"><input type="text" id="password" name="password" value="12345" ></div>
 	    <div class="grid-item" id="item_11"><input type="submit" id="confirm_btn" value='확 인'></div>
 	    <div class="grid-item" id="item_12"><input type="reset" id="cancel_btn" value='취 소'> </div>
 	    <input type="hidden" name="cmd" value="signin" />
@@ -23,19 +23,12 @@
 <jsp:include page="../home/bottom.jsp"/>
 <script>
 $('#confirm_btn').click(function(){
-	var customerID = $('#customerID').val();
-	var password = $('#password').val();
+	
 	$('#form')
 	.attr('action', '${ctx}/customer.do')
 	.submit();
-});
+	});	
+$('#cancel_btn').click(function(){
+	alert('취소버튼클릭!!');
+	});	
 </script>
-
-
-
-
-
-
-
-
-
