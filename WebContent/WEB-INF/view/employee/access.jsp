@@ -9,9 +9,9 @@
 <form id="form" name="form" >
 	<div class="grid-container">
 	    <div class="grid-item" id="item_1">매니저</div>
-	    <div class="grid-item" id="item_2"><input type="text" id="empno" name="empno" value="1002" ></div>
+	    <div class="grid-item" id="item_2"><input type="text" id="empno" name="empno" value="1100" ></div>
 	    <div class="grid-item" id="item_3">이 름</div>
-	    <div class="grid-item" id="item_4"><input type="text" id="name" name="name" value="이종협" ></div>
+	    <div class="grid-item" id="item_4"><input type="text" id="name" name="name" value="김경민" ></div>
 	    <div class="grid-item" id="item_11"><input type="submit" id="confirm_btn" value='확 인'></div>
 	    <div class="grid-item" id="item_12"><input type="reset" id="cancel_btn" value='취 소'> </div>
 	    <input type="hidden" name="cmd" value="access" />

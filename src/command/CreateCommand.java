@@ -24,12 +24,13 @@ public class CreateCommand extends Command{
 		case SIGNUP:
 			CustomerDTO cus = new CustomerDTO();
 			cus.setCustomerID(request.getParameter("customerID"));
-			cus.setCustomersName(request.getParameter("customersName"));
+			cus.setCustomerName(request.getParameter("customersName"));
 			cus.setPassword(request.getParameter("password"));
 			cus.setAddress(request.getParameter("address"));
 			cus.setCity(request.getParameter("city"));
 			cus.setPostalCode(request.getParameter("postalCode"));
 			cus.setSsn(request.getParameter("ssn"));
+			cus.setPhone(request.getParameter("phone"));
 			CustomerServiceImpl.getInstance().registCustomer(cus);
 			break;
 		default:

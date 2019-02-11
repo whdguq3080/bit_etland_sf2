@@ -26,24 +26,29 @@
 				placeholder="비밀번호 입력" aria-describedby="basic-addon1">
 		</div><br />
 		<div class="input-group">
-			<span class="input-group-addon" id="basic-addon1">주소</span> <input
-				type="text" id="address" name="address" class="form-control"
-				placeholder="주소 입력" aria-describedby="basic-addon1">
+			<span class="input-group-addon" id="basic-addon1">주민번호</span> <input
+				type="text" id="ssn" name="ssn" class="form-control"
+				placeholder="주민번호 입력" aria-describedby="basic-addon1">
 		</div><br />
 		<div class="input-group">
-			<span class="input-group-addon" id="basic-addon1">도시</span> <input
-				type="text" id="city" name="city" class="form-control"
-				placeholder="도시 입력" aria-describedby="basic-addon1">
+			<span class="input-group-addon" id="basic-addon1">전화번호</span> <input
+				type="text" id="phone" name="phone" class="form-control"
+				placeholder="전화번호를 입력하시오" aria-describedby="basic-addon1">
+		</div><br />
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">주소</span> <input
+				type="text" id="postalcode" name="postalcode" class="form-control"
+				placeholder="주소를 입력하시오" aria-describedby="basic-addon1">
 		</div><br />
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">우편번호</span> <input
-				type="text" id="postalCode" name="postalCode" class="form-control"
-				placeholder="우편번호를 입력하시오" aria-describedby="basic-addon1">
+				type="text" id="city" name="city" class="form-control"
+				placeholder="상세주소를 입력하시오" aria-describedby="basic-addon1">
 		</div><br />
 		<div class="input-group">
-			<span class="input-group-addon" id="basic-addon1">주민번호</span> <input
-				type="text" id="ssn" name="ssn" class="form-control"
-				placeholder="주민등록번호를 입력하시오" aria-describedby="basic-addon1">
+			<span class="input-group-addon" id="basic-addon1">상세주소</span> <input
+				type="text" id="address" name="address" class="form-control"
+				placeholder="우편번호를 입력하시오" aria-describedby="basic-addon1">
 		</div><br /><br />
 		<div class="input-group">
 			<button type="button" id="confirm_btn" class="btn btn-default btn-lg">

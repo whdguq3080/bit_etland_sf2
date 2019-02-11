@@ -1,8 +1,6 @@
-/controller/
-/command/
-/dao/
-/service/
-/enums/
-/customerCommand/
 /domain/
-/test/
+/dao/
+/enums/
+/command/
+/service/
+/sql/

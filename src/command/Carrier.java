@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Carrier {
 	public static void forword(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("=====6.캐리어 진입====");
+		System.out.println("=====캐리어 내부...도착할 페이지: "+Receiver.cmd.getView());
 		request.getRequestDispatcher(Receiver.cmd.getView())
 		.forward(request, response);
 	}

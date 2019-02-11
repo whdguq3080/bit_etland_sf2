@@ -2,12 +2,17 @@ package domain;
 import lombok.Data;
 public @Data class CustomerDTO {
 	private String customerID,
-					customersName,
+					customerName,
 					password,
-					address,
+					ssn, //900101-1
+					photo,
+					phone,
 					city,
-					postalCode,
-					ssn; //900101-1
+					address,
+					postalCode;
+					
+					
+					
 
 
 	

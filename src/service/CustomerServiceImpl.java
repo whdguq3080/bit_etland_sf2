@@ -20,7 +20,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public List<CustomerDTO> bringCustomerList() {
-		return null;
+		
+		return dao.selectCustomersLists();
 	}
 
 	@Override
