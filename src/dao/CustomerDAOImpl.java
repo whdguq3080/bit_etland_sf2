@@ -10,6 +10,7 @@ import domain.CustomerDTO;
 import enums.CustomerSQL;
 import enums.Vendor;
 import factory.DatabaseFactory;
+import proxy.Pagination;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	private static CustomerDAOImpl instance = new CustomerDAOImpl();
@@ -58,6 +59,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 				dto.setPostalCode(rs.getString("POSTALCODE"));
 				dto.setSsn(rs.getString("SSN"));
 				dto.setPhone(rs.getString("PHONE"));
+				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -73,11 +75,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE)
 					.getConnection()
 					.prepareStatement(CustomerSQL.LIST.toString());
+				/*ps.setString(1, page.getStartRow());
+				ps.setString(2, page.getEndRow());*/
 			ResultSet rs = ps.executeQuery();
 			CustomerDTO cust = null;
 			while (rs.next()) {
 				  cust = new CustomerDTO();
 				  cust.setCustomerID(rs.getString("CUSTOMER_ID"));
+				  cust.setRnum(rs.getString("Rnum"));
 	              cust.setCustomerName(rs.getString("CUSTOMER_NAME"));
 	              cust.setSsn(rs.getString("SSN"));
 	              cust.setPhone(rs.getString("PHONE"));
@@ -100,8 +105,25 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 	@Override
 	public int countCustomer() {
-		// TODO Auto-generated method stub
-		return 0;
+		int cc = 0;
+		try {
+			PreparedStatement ps = DatabaseFactory
+			.createDatabase(Vendor.ORACLE)
+			.getConnection()
+			.prepareStatement(CustomerSQL.COUNT.toString());
+			ResultSet rs = ps.executeQuery();
+			Pagination page = null;
+			while(rs.next()) {
+				page = new Pagination();
+				page.setStartRow(rs.getString("startRow"));
+				page.setEndRow(rs.getString("endRow"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cc;
 	}
 
 	@Override
@@ -150,6 +172,5 @@ public class CustomerDAOImpl implements CustomerDAO {
 			e.printStackTrace();
 		}
 	}
+	}
 
-
-}

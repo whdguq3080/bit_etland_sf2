@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import domain.CustomerDTO;
+import proxy.Pagination;
 
 public interface CustomerDAO {
 	public void insertCustomer(CustomerDTO cus);

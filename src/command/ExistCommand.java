@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import domain.CustomerDTO;
 import domain.EmployeeDTO;
 import enums.Action;
+import proxy.Pagination;
 import service.CustomerServiceImpl;
 import service.EmployeeServiceImpl;
 
@@ -27,7 +28,8 @@ public class ExistCommand extends Command  {
 			emp.setName(request.getParameter("name"));
 			boolean exist = EmployeeServiceImpl.getInstance().existsEmployee(emp);
 			if(exist) {
-				List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList();
+				Pagination page = null;
+				List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList(page);
 				request.setAttribute("list", list);
 				System.out.println("접근허용");
 				System.out.println("총 고객의 수:"+list.size());

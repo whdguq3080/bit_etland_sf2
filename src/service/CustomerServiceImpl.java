@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.CustomerDAOImpl;
 import domain.CustomerDTO;
+import proxy.Pagination;
 
 public class CustomerServiceImpl implements CustomerService {
 	private static CustomerServiceImpl instance = new CustomerServiceImpl();
@@ -19,15 +20,14 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<CustomerDTO> bringCustomerList() {
+	public List<CustomerDTO> bringCustomerList(Pagination page) {
 		
 		return dao.selectCustomersLists();
 	}
 
 	@Override
 	public int countCustomer() {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.countCustomer();
 	}
 
 	public boolean existsCustomer(CustomerDTO cus) {

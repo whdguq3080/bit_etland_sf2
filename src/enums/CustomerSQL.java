@@ -25,7 +25,11 @@ public enum CustomerSQL {
 					"WHERE CUSTOMER_ID LIKE ? AND PASSWORD LIKE ?");
 			break;
 		case LIST:
-			query.append("SELECT * FROM CUSTOMERS" );
+			query.append("SELECT T.*\n" + 
+					"FROM (SELECT ROWNUM RNUM ,C.* \n" + 
+					"        FROM CUSTOMERS C \n" + 
+					"        ORDER BY ROWNUM DESC) T \n" + 
+					"WHERE T.RNUM BETWEEN 27 AND 31 ");
 			break;
 		default:
 			break;

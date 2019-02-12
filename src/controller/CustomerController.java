@@ -23,7 +23,8 @@ public class CustomerController extends HttpServlet {
 	CustomerService service = CustomerServiceImpl.getInstance();
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Receiver.init(request,response);
-		Carrier.forword(request, response);	
+		Carrier.forword(request, response);
+		System.out.println("======");
 	
 	}
 	}
