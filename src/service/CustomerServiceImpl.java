@@ -1,10 +1,11 @@
 package service;
 
+
 import java.util.List;
 
 import dao.CustomerDAOImpl;
 import domain.CustomerDTO;
-import proxy.Pagination;
+import proxy.Proxy;
 
 public class CustomerServiceImpl implements CustomerService {
 	private static CustomerServiceImpl instance = new CustomerServiceImpl();
@@ -20,14 +21,14 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<CustomerDTO> bringCustomerList(Pagination page) {
+	public List<CustomerDTO> bringCustomerList(Proxy pxy) {
 		
-		return dao.selectCustomersLists();
+		return dao.selectCustomersLists(pxy);
 	}
 
 	@Override
-	public int countCustomer() {
-		return dao.countCustomer();
+	public int countCustomer(Proxy pxy) {
+		return dao.countCustomer(pxy);
 	}
 
 	public boolean existsCustomer(CustomerDTO cus) {
@@ -50,5 +51,6 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerDTO retrieveCustomers(CustomerDTO cus) {
 		return dao.selectCustomers(cus);
 	}
+	
 
 }

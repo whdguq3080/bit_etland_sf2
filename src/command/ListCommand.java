@@ -1,33 +1,41 @@
 package command;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import domain.CustomerDTO;
 import enums.Action;
-import proxy.Pagination;
 import proxy.Proxy;
+import proxy.RequestProxy;
+import proxy.PageProxy;
+import proxy.Pagination;
 import service.CustomerServiceImpl;
 
 
 public class ListCommand extends Command {
 	//syso cmd=list&page=list&page_num=2&page_size=5
-	public ListCommand(HttpServletRequest request,HttpServletResponse response) {
-		super(request,response);
+	public ListCommand(Map<String,Proxy> pxy) {
+		super(pxy);
+		RequestProxy req = (RequestProxy) pxy.get("req");
+		HttpServletRequest request = req.getRequest();
 		switch (Action.valueOf(request.getParameter("cmd").toUpperCase())){
 		case CUST_LIST:
 			System.out.println(request.getParameter("cmd"));
 			System.out.println(request.getParameter("page"));
 			System.out.println(request.getParameter("page_num"));
 			System.out.println(request.getParameter("page_size"));
-		List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList(new Proxy().getPage());
-		request.setAttribute("list", list);
-		break;
+			Proxy paging = new Pagination();
+			paging.carryOut(request);
+			Proxy pagePxy= new PageProxy();
+			pagePxy.carryOut(paging);
+			List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList(pagePxy);
+			request.setAttribute("list", list);
+			break;
 		
-		default:
-		break;
+			default:
+			break;
 	}
 }
 }

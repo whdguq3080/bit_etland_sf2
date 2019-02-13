@@ -1,7 +1,7 @@
 package enums;
 
 public enum CustomerSQL {
-	SIGNUP,SIGNIN, COUNT,LIST;
+	SIGNUP,SIGNIN, COUNT,LIST,ROW_COUNT;
 	
 	@Override
 	public String toString() {
@@ -25,11 +25,16 @@ public enum CustomerSQL {
 					"WHERE CUSTOMER_ID LIKE ? AND PASSWORD LIKE ?");
 			break;
 		case LIST:
-			query.append("SELECT T.*\n" + 
-					"FROM (SELECT ROWNUM RNUM ,C.* \n" + 
-					"        FROM CUSTOMERS C \n" + 
-					"        ORDER BY ROWNUM DESC) T \n" + 
-					"WHERE T.RNUM BETWEEN 27 AND 31 ");
+			query.append("SELECT T2.*\n" + 
+					"FROM(SELECT ROWNUM R2,T.*\n" + 
+					"        FROM (SELECT ROWNUM RNUM ,C.* \n" + 
+					"        FROM CUSTOMERS C  \n" + 
+					"        ORDER BY RNUM DESC) T) T2  \n" + 
+					"WHERE R2 BETWEEN ? AND ? \n");
+
+			break;
+		case ROW_COUNT:
+			query.append("SELECT COUNT(*) AS COUNT FROM CUSTOMERS");
 			break;
 		default:
 			break;

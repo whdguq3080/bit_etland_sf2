@@ -42,13 +42,18 @@
 	<div style="height: 50px"></div>    
 	<div class="center">
 	  <div class="pagination">
+	 	<c:forEach begin="1" end="5" varStatus="">
+	 	
+	 	</c:forEach>
 	  <a href="#">&laquo;</a>
 	  <a href="#" class="active">1</a>
 	  <a href="#" id ="page2" >2</a>
-	  <a href="#">3</a>
-	  <a href="#">4</a>
-	  <a href="#">5</a>
-	  <a href="#">&raquo;</a>
+	  <a href="#" id ="page3">3</a>
+	  <a href="#" id ="page4">4</a>
+	  <a href="#" id ="page5">5</a>
+	  <a href="#" id ="page6">6</a>
+	  <a href="#" id ="page7">7</a>
+	  <a href="#" id ="page2">&raquo;</a>
 	  </div>
 	</div>
 </div>
@@ -58,6 +63,26 @@
  		alert('2페이지로 넘어갑니다~');
  		location.assign('customer.do?cmd=cust_list&page=list&page_num=2&page_size=5');
  });
+ $('#page3').click(function(){
+		alert('3페이지로 넘어갑니다~');
+		location.assign('customer.do?cmd=cust_list&page=list&page_num=3&page_size=5');
+});
+ $('#page4').click(function(){
+		alert('4페이지로 넘어갑니다~');
+		location.assign('customer.do?cmd=cust_list&page=list&page_num=4&page_size=5');
+});
+ $('#page5').click(function(){
+		alert('5페이지로 넘어갑니다~');
+		location.assign('customer.do?cmd=cust_list&page=list&page_num=5&page_size=5');
+});
+ $('#page6').click(function(){
+		alert('6페이지로 넘어갑니다~');
+		location.assign('customer.do?cmd=cust_list&page=list&page_num=6&page_size=5');
+});
+ $('#page7').click(function(){
+		alert('7페이지로 넘어갑니다~');
+		location.assign('customer.do?cmd=cust_list&page=list&page_num=7&page_size=5');
+});
 	//page_um,pageSize,
 	//?cmd=list&page=list&page_num=2&page_size=5
 	/*

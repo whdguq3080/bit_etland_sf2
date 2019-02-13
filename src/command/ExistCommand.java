@@ -1,22 +1,27 @@
 package command;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domain.CustomerDTO;
 import domain.EmployeeDTO;
 import enums.Action;
+import proxy.Proxy;
+import proxy.RequestProxy;
+import proxy.PageProxy;
 import proxy.Pagination;
 import service.CustomerServiceImpl;
 import service.EmployeeServiceImpl;
 
 public class ExistCommand extends Command  {
 	
-	public ExistCommand(HttpServletRequest request,HttpServletResponse response) {
-		super(request,response);
+	public ExistCommand(Map<String,Proxy> pxy) {
+		super(pxy);
+		RequestProxy req = (RequestProxy) pxy.get("req");
+		HttpServletRequest request = req.getRequest();
 		HttpSession session = request.getSession();
 		switch (Action
 				.valueOf(request
@@ -28,10 +33,14 @@ public class ExistCommand extends Command  {
 			emp.setName(request.getParameter("name"));
 			boolean exist = EmployeeServiceImpl.getInstance().existsEmployee(emp);
 			if(exist) {
-				Pagination page = null;
-				List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList(page);
+				System.out.println("사원 접근 허용 exist" + exist);
+				Proxy paging = new Pagination();
+				paging.carryOut(request);
+				Proxy pagePxy = new PageProxy();
+				pagePxy.carryOut(paging);
+				List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList(pagePxy);
 				request.setAttribute("list", list);
-				System.out.println("접근허용");
+				System.out.println("액세스 접근허용");
 				System.out.println("총 고객의 수:"+list.size());
 				System.out.println("가장 최근에 가입한 고객명:" + list.get(0).getCustomerName());
 			}else {

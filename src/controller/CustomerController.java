@@ -10,21 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.Carrier;
 import command.Receiver;
-import domain.CustomerDTO;
-import enums.Action;
 import service.CustomerService;
 import service.CustomerServiceImpl;
-import service.EmployeeService;
-import service.EmployeeServiceImpl;
 
 @WebServlet("/customer.do")
 public class CustomerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	CustomerService service = CustomerServiceImpl.getInstance();
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("======1======");
 		Receiver.init(request,response);
 		Carrier.forword(request, response);
-		System.out.println("======");
 	
 	}
 	}

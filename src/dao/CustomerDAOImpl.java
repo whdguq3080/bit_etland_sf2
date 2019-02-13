@@ -10,7 +10,9 @@ import domain.CustomerDTO;
 import enums.CustomerSQL;
 import enums.Vendor;
 import factory.DatabaseFactory;
+import proxy.PageProxy;
 import proxy.Pagination;
+import proxy.Proxy;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	private static CustomerDAOImpl instance = new CustomerDAOImpl();
@@ -69,14 +71,20 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public List<CustomerDTO> selectCustomersLists() {
+	public List<CustomerDTO> selectCustomersLists(Proxy pxy) {
 		List<CustomerDTO> list = new ArrayList<>();
 		try {
+			System.out.println("실행할 쿼리" + CustomerSQL.LIST.toString());
+			Pagination page = ((PageProxy)pxy).getPage();
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE)
 					.getConnection()
 					.prepareStatement(CustomerSQL.LIST.toString());
-				/*ps.setString(1, page.getStartRow());
-				ps.setString(2, page.getEndRow());*/
+				String startRow = String.valueOf(page.getStartRow());
+				String endRow = String.valueOf(page.getEndRow());
+				System.out.println("스타트로우" + startRow);
+				System.out.println("앤드로우" + endRow);
+				ps.setString(1, startRow);
+				ps.setString(2, endRow);
 			ResultSet rs = ps.executeQuery();
 			CustomerDTO cust = null;
 			while (rs.next()) {
@@ -104,26 +112,21 @@ public class CustomerDAOImpl implements CustomerDAO {
 		return list;
 	}
 	@Override
-	public int countCustomer() {
-		int cc = 0;
+	public int countCustomer(Proxy pxy) {
+		int count = 0;
 		try {
-			PreparedStatement ps = DatabaseFactory
-			.createDatabase(Vendor.ORACLE)
+			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE)
 			.getConnection()
-			.prepareStatement(CustomerSQL.COUNT.toString());
+			.prepareStatement(CustomerSQL.ROW_COUNT.toString());
 			ResultSet rs = ps.executeQuery();
-			Pagination page = null;
 			while(rs.next()) {
-				page = new Pagination();
-				page.setStartRow(rs.getString("startRow"));
-				page.setEndRow(rs.getString("endRow"));
+				count = rs.getInt("COUNT");
 			}
-			
-		} catch (SQLException e) {
+		}catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return cc;
+		return count;
 	}
 
 	@Override
