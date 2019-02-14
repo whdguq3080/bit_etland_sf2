@@ -43,6 +43,8 @@ public class ExistCommand extends Command  {
 				System.out.println("액세스 접근허용");
 				System.out.println("총 고객의 수:"+list.size());
 				System.out.println("가장 최근에 가입한 고객명:" + list.get(0).getCustomerName());
+				request.setAttribute("list", list);
+				request.setAttribute("pagination", paging);
 			}else {
 				System.out.println("접근실패");
 				super.setDomain("home");

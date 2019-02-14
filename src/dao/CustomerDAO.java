@@ -2,6 +2,7 @@ package dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import domain.CustomerDTO;
 import proxy.Proxy;
@@ -14,4 +15,6 @@ public interface CustomerDAO {
 	public boolean existsCustomerID(CustomerDTO cus);
 	public void updateCustomer(CustomerDAO cus);
 	public void deleteCustomer(CustomerDAO cus);
+	
+	public Map<String, Object> selectPhone(Proxy pxy);
 }

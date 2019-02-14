@@ -4,7 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import domain.CustomerDTO;
 import enums.CustomerSQL;
@@ -74,15 +78,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public List<CustomerDTO> selectCustomersLists(Proxy pxy) {
 		List<CustomerDTO> list = new ArrayList<>();
 		try {
-			System.out.println("실행할 쿼리" + CustomerSQL.LIST.toString());
+			//System.out.println("실행할 쿼리" + CustomerSQL.LIST.toString());
 			Pagination page = ((PageProxy)pxy).getPage();
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE)
 					.getConnection()
 					.prepareStatement(CustomerSQL.LIST.toString());
 				String startRow = String.valueOf(page.getStartRow());
 				String endRow = String.valueOf(page.getEndRow());
-				System.out.println("스타트로우" + startRow);
-				System.out.println("앤드로우" + endRow);
+				System.out.println("DAO 스타트로우" + startRow);
+				System.out.println("DAO 앤드로우" + endRow);
 				ps.setString(1, startRow);
 				ps.setString(2, endRow);
 			ResultSet rs = ps.executeQuery();
@@ -174,6 +178,33 @@ public class CustomerDAOImpl implements CustomerDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@Override
+	public Map<String, Object> selectPhone(Proxy pxy) {
+		Map<String, Object> map = new HashMap<String,Object>();
+		try {
+			PreparedStatement ps
+			=DatabaseFactory
+			.createDatabase(Vendor.ORACLE)
+			.getConnection().prepareStatement(CustomerSQL.MEMBER.toString());
+			ResultSet rs = ps.executeQuery();
+			CustomerDTO cust = null;
+			while(rs.next()) {
+			cust = new CustomerDTO();
+			String entry = rs.getString("CUSTOMER_ID");
+			cust.setCustomerID(rs.getString("CUSTOMER_ID"));
+			cust.setCustomerName(rs.getString("CUSTOMER_NAME"));
+			cust.setPhone(rs.getString("PHONE"));
+			map.put(entry, cust);
+			}
+			System.out.println("=====Map===="+map);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return map;
 	}
 	}
 

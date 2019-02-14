@@ -24,7 +24,7 @@
 	    <th>지번주소</th>
 	    <th>상세주소</th>
 	  </tr>
-	  <c:forEach items="${list}" var="cust" varStatus="status">
+	  <c:forEach items="${list}" var="cust">
 	  <tr>
 	    <td>${cust.rnum}</td>
 	    <td>${cust.customerID}</td>
@@ -42,47 +42,26 @@
 	<div style="height: 50px"></div>    
 	<div class="center">
 	  <div class="pagination">
-	 	<c:forEach begin="1" end="5" varStatus="">
-	 	
+		<c:if test="${pagination.existPrev}">
+		   <a href='${ctx}/customer.do?cmd=cust_list&page=list&page_num=${pagination.prevBlock}'>&laquo;</a>
+		</c:if>
+	 	<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" varStatus="status">
+	 	 <a href="#" class ='page' >${status.index}</a>
 	 	</c:forEach>
-	  <a href="#">&laquo;</a>
-	  <a href="#" class="active">1</a>
-	  <a href="#" id ="page2" >2</a>
-	  <a href="#" id ="page3">3</a>
-	  <a href="#" id ="page4">4</a>
-	  <a href="#" id ="page5">5</a>
-	  <a href="#" id ="page6">6</a>
-	  <a href="#" id ="page7">7</a>
-	  <a href="#" id ="page2">&raquo;</a>
+	 	<c:if test="${pagination.existNext}">
+		  <a href='${ctx}/customer.do?cmd=cust_list&page=list&page_num=${pagination.nextBlock}'>&raquo;</a>
+	 	</c:if>
 	  </div>
 	</div>
 </div>
 <jsp:include page="../home/bottom.jsp"/>
 <script>
- $('#page2').click(function(){
- 		alert('2페이지로 넘어갑니다~');
- 		location.assign('customer.do?cmd=cust_list&page=list&page_num=2&page_size=5');
+ $('.page').click(function(){
+ 		alert('--클릭한 페이지--'+$(this).text());
+
+ location.assign('${ctx}/customer.do?cmd=cust_list&page=list&page_num='+$(this).text());
  });
- $('#page3').click(function(){
-		alert('3페이지로 넘어갑니다~');
-		location.assign('customer.do?cmd=cust_list&page=list&page_num=3&page_size=5');
-});
- $('#page4').click(function(){
-		alert('4페이지로 넘어갑니다~');
-		location.assign('customer.do?cmd=cust_list&page=list&page_num=4&page_size=5');
-});
- $('#page5').click(function(){
-		alert('5페이지로 넘어갑니다~');
-		location.assign('customer.do?cmd=cust_list&page=list&page_num=5&page_size=5');
-});
- $('#page6').click(function(){
-		alert('6페이지로 넘어갑니다~');
-		location.assign('customer.do?cmd=cust_list&page=list&page_num=6&page_size=5');
-});
- $('#page7').click(function(){
-		alert('7페이지로 넘어갑니다~');
-		location.assign('customer.do?cmd=cust_list&page=list&page_num=7&page_size=5');
-});
+
 	//page_um,pageSize,
 	//?cmd=list&page=list&page_num=2&page_size=5
 	/*

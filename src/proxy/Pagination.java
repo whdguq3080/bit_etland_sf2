@@ -9,7 +9,7 @@ import service.CustomerServiceImpl;
 public class Pagination implements Proxy {
 	private int pageNum,pageSize,blockSize,
 		startRow,endRow,startPage,endPage,
-		prewBlock,nextBlock,rowCount,totalCount;
+		prevBlock,nextBlock,rowCount,totalCount;
 	private boolean existPrev,existNext;
 	@Override
 	public void carryOut(Object o) {
@@ -29,20 +29,41 @@ public class Pagination implements Proxy {
 		
 		int pageCount = rowCount / pageSize;
 		System.out.println("전체 페이지수: "+pageCount);
-		startRow = (pageNum -1) *pageSize + 1;
+		startRow = (pageNum-1) *pageSize + 1;  //1
 		System.out.println("스타트로우: "+startRow);
-		endRow = (rowCount > pageNum * pageSize)? pageNum * pageSize: rowCount;
+		endRow = (rowCount > pageNum * pageSize)? pageNum * pageSize: rowCount; //5
 		System.out.println("엔드로우: "+endRow);
+
+		startPage = (pageNum-1) *pageSize + 1; //1
+		endPage   = (rowCount > pageNum * pageSize)? pageNum * pageSize: rowCount; //5
 		
-		/*startRow = rowCount - ((pageSize * pageNum)-1);
+		existPrev = false;
+		existNext = false;
+		
+		prevBlock = pageNum - pageSize; // 1- 5 = -4
+		System.out.println("prevBlock="+prevBlock);
+		nextBlock = startPage + pageSize; // 
+		
+		//blockSize = endRow - startRow;
+		
+		if(pageNum<=blockSize) {
+			existPrev = true;
+		}else {
+			existPrev = false;
+		}
+		
+	}
+}
+		
+
+
+
+
+
+
+/*startRow = rowCount - ((pageSize * pageNum)-1);
 		System.out.println("스타트로우" + startRow);
 		endRow = startRow + (pageSize-1);
 		System.out.println("엔드로우" + endRow);
 		*/
-		/*if(startRow<endRow) {
-			endRow = startRow-5;
-			startRow= endRow-4;
-			System.out.println("endRow===="+endRow +"startRow====="+startRow);*/
-		}
-	}
 

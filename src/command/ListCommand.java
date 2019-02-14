@@ -32,8 +32,8 @@ public class ListCommand extends Command {
 			pagePxy.carryOut(paging);
 			List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList(pagePxy);
 			request.setAttribute("list", list);
+			request.setAttribute("pagination", paging);
 			break;
-		
 			default:
 			break;
 	}
