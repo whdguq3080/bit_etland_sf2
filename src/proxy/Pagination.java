@@ -27,43 +27,42 @@ public class Pagination implements Proxy {
 		rowCount = CustomerServiceImpl.getInstance().countCustomer(null);
 		System.out.println("전체 카운트:" + rowCount);
 		
-		int pageCount = rowCount / pageSize;
+		int pageCount = rowCount / pageSize; //6...1
 		System.out.println("전체 페이지수: "+pageCount);
-		startRow = (pageNum-1) *pageSize + 1;  //1
+		startRow = (pageNum-1) *pageSize + 1;  //1..6...11...16...
 		System.out.println("스타트로우: "+startRow);
-		endRow = (rowCount > pageNum * pageSize)? pageNum * pageSize: rowCount; //5
+		endRow = (rowCount > pageNum * pageSize)? pageNum * pageSize: rowCount; //5...10...15....20...
 		System.out.println("엔드로우: "+endRow);
 
-		startPage = (pageNum-1) *pageSize + 1; //1
-		endPage   = (rowCount > pageNum * pageSize)? pageNum * pageSize: rowCount; //5
+		startPage = (pageNum-1) *pageSize + 1; //1,6,11,16....
+		endPage   = (rowCount > pageNum * pageSize)? pageNum * pageSize: rowCount; //5,,10..15..20...
 		
-		existPrev = false;
-		existNext = false;
-		
-		prevBlock = pageNum - pageSize; // 1- 5 = -4
-		System.out.println("prevBlock="+prevBlock);
-		nextBlock = startPage + pageSize; // 
-		
-		//blockSize = endRow - startRow;
-		
-		if(pageNum<=blockSize) {
-			existPrev = true;
-		}else {
-			existPrev = false;
+		if(pageNum <= 1*blockSize) {
+			startPage = 1+0*blockSize;
+		}else if(pageNum <= 2*blockSize) {
+			startPage = 1+1*blockSize;
+		}else if(pageNum <= 3*blockSize) {
+			startPage = 1+2*blockSize;
 		}
+		prevBlock = startPage - pageSize; //-4...1...6...11...
+		nextBlock = startPage + pageSize; //6...11...16...21...
+		
+		System.out.println("스타트페이지: "+startPage);
+			if(startPage == 1) {
+				endPage = 5;
+			}else if(startPage == 6){
+				endPage = pageCount;
+			}
+			System.out.println("엔드페이지: "+endPage);
+			
+			existPrev = (startPage - pageSize) > 0; //-4...1...6...11...>0
+			existNext = (startPage + pageSize) <= pageCount; //6...11...16...21... <= 6
+			prevBlock = startPage - pageSize; //-4...1...6...11...
+			nextBlock = startPage + pageSize; //6...11...16...21...
+
+			System.out.println("프리브블록: "+prevBlock);
+			System.out.println("넥스트블록: "+nextBlock);
 		
 	}
 }
-		
-
-
-
-
-
-
-/*startRow = rowCount - ((pageSize * pageNum)-1);
-		System.out.println("스타트로우" + startRow);
-		endRow = startRow + (pageSize-1);
-		System.out.println("엔드로우" + endRow);
-		*/
 

@@ -49,7 +49,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public CustomerDTO selectCustomers(CustomerDTO cus) {
 		CustomerDTO dto = null;
 		try {
-			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE)
+			PreparedStatement ps = DatabaseFactory
+					.createDatabase(Vendor.ORACLE)
 					.getConnection()
 					.prepareStatement(CustomerSQL.SIGNIN.toString());
 			ps.setString(1, cus.getCustomerID());
@@ -57,15 +58,8 @@ public class CustomerDAOImpl implements CustomerDAO {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				dto = new CustomerDTO();
-				dto.setAddress(rs.getString("ADDRESS"));
-				dto.setCity(rs.getString("CITY"));
 				dto.setCustomerID(rs.getString("CUSTOMER_ID"));
-				dto.setCustomerName(rs.getString("CUSTOMERS_NAME"));
 				dto.setPassword(rs.getString("PASSWORD"));
-				dto.setPostalCode(rs.getString("POSTALCODE"));
-				dto.setSsn(rs.getString("SSN"));
-				dto.setPhone(rs.getString("PHONE"));
-				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -155,7 +149,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void updateCustomer(CustomerDAO cus) {
+	public void updateCustomer(CustomerDTO cus) {
 		try {
 			String sql = "";
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
@@ -168,7 +162,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public void deleteCustomer(CustomerDAO cus) {
+	public void deleteCustomer(CustomerDTO cus) {
 		try {
 			String sql = "";
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
@@ -205,6 +199,32 @@ public class CustomerDAOImpl implements CustomerDAO {
 		
 		
 		return map;
+	}
+	@Override
+	public CustomerDTO selectCustomer(CustomerDTO cus) {
+		CustomerDTO cust1 = new CustomerDTO();
+		try {
+			PreparedStatement ps
+			=DatabaseFactory
+			.createDatabase(Vendor.ORACLE)
+			.getConnection().prepareStatement(CustomerSQL.RETRIEVE_INFO.toString());
+			ps.setString(1, cus.getCustomerID());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+			cust1.setCustomerID(rs.getString("CUSTOMER_ID"));
+			cust1.setCustomerName(rs.getString("CUSTOMER_NAME"));
+			cust1.setSsn(rs.getString("SSN"));
+			cust1.setPhone(rs.getString("PHONE"));
+			cust1.setPostalCode(rs.getString("POSTAL_CODE"));
+			cust1.setCity(rs.getString("CITY"));
+			cust1.setAddress(rs.getString("ADDRESS"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("조회된 결과"+ cust1.toString());
+		return cust1;
 	}
 	}
 

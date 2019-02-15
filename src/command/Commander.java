@@ -30,6 +30,8 @@ public class Commander {
 		case CUST_LIST:
 			cmd = new ListCommand(pxy);
 			break;
+		case CUST_RETRIEVE:
+			cmd = new RetrieveCommand(pxy);
 		default:
 			break;
 		}

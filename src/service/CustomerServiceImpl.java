@@ -20,7 +20,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public void registCustomer(CustomerDTO cus) {
 			dao.insertCustomer(cus);
 	}
-
+	@Override
+	public CustomerDTO retrieveCustomers(CustomerDTO cus) {
+		return dao.selectCustomers(cus);
+	}
 	@Override
 	public List<CustomerDTO> bringCustomerList(Proxy pxy) {
 		
@@ -45,17 +48,15 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void removeCustomer(CustomerDTO cus) {
-		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public CustomerDTO retrieveCustomers(CustomerDTO cus) {
-		return dao.selectCustomers(cus);
+	public CustomerDTO retrieveCustomer(CustomerDTO cus) {
+		return dao.selectCustomer(cus);
 	}
 	@Override
 	public Map<String, Object> retrievePhone(Proxy pxy) {
 		return dao.selectPhone(pxy);
 	}
-	
 
 }

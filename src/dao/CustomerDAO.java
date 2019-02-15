@@ -13,8 +13,9 @@ public interface CustomerDAO {
 	public List<CustomerDTO> selectCustomersLists(Proxy pxy);
 	public int countCustomer(Proxy pxy);
 	public boolean existsCustomerID(CustomerDTO cus);
-	public void updateCustomer(CustomerDAO cus);
-	public void deleteCustomer(CustomerDAO cus);
+	public void updateCustomer(CustomerDTO cus);
+	public void deleteCustomer(CustomerDTO cus);
 	
+	public CustomerDTO selectCustomer(CustomerDTO cus);
 	public Map<String, Object> selectPhone(Proxy pxy);
 }

@@ -55,11 +55,9 @@ public class ExistCommand extends Command  {
 			break;
 		case SIGNIN:
 			CustomerDTO cus = new CustomerDTO();
-			cus.setCustomerID(request.getParameter("customerID"));
-			cus.setPassword(request.getParameter("password"));
-			cus = CustomerServiceImpl
-					.getInstance()
-					.retrieveCustomers(cus);
+			cus.setCustomerID(request.getParameter("CUSTOMER_ID"));
+			cus.setPassword(request.getParameter("PASSWORD"));
+			cus = CustomerServiceImpl.getInstance().retrieveCustomers(cus);
 			if(cus != null) {
 				System.out.println("로그인 성공");
 				session.setAttribute("customer", cus);
