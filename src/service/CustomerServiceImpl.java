@@ -42,8 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void modifyCustomer(CustomerDTO cus) {
-		// TODO Auto-generated method stub
-		
+		dao.updateCustomer(cus);
 	}
 
 	@Override

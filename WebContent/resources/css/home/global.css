@@ -10,6 +10,7 @@
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 5px; 
   text-align: center;
+  font-size: 30px;
 }
 #wrapper{
 	font-size: 20px;
@@ -17,6 +18,7 @@
 #header{
     grid-column-start: 1;
     grid-column-end: 5;
+    font-size: 30px;
 }
 #footer{
     grid-column-start: 1;

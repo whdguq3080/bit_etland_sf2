@@ -18,4 +18,4 @@
 </head>
 <body>
 <div id="wrapper" class="grid-container container-fluid">
-	<div class="grid-item" id="header">비트 리테일</div>
+	<div class="grid-item" id="header" >비트 리테일</div>

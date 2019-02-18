@@ -151,11 +151,16 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void updateCustomer(CustomerDTO cus) {
 		try {
-			String sql = "";
+			String sql = CustomerSQL.CUST_UPDATE.toString();
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
-			ps.setString(1, "");
+			ps.setString(1, cus.getPhone());
+			ps.setString(2, cus.getCity());
+			ps.setString(3, cus.getAddress());
+			ps.setString(4, cus.getPostalCode());
+			ps.setString(5, cus.getPassword());
+			ps.setString(6, cus.getCustomerID());
 			int rs = ps.executeUpdate();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -204,15 +209,23 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public CustomerDTO selectCustomer(CustomerDTO cus) {
 		CustomerDTO cust1 = new CustomerDTO();
 		try {
+			String sql = (cus.getPassword() == null) ?
+					 CustomerSQL.RETRIEVE_INFO.toString() :
+					 CustomerSQL.SIGNIN.toString() ;
+					 CustomerSQL.CUST_UPDATE.toString();
 			PreparedStatement ps
 			=DatabaseFactory
 			.createDatabase(Vendor.ORACLE)
-			.getConnection().prepareStatement(CustomerSQL.RETRIEVE_INFO.toString());
+			.getConnection().prepareStatement(sql);
 			ps.setString(1, cus.getCustomerID());
+			if(cus.getPassword() != null) {
+				ps.setString(2, cus.getPassword());
+			}
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 			cust1.setCustomerID(rs.getString("CUSTOMER_ID"));
 			cust1.setCustomerName(rs.getString("CUSTOMER_NAME"));
+			cust1.setPassword(rs.getString("PASSWORD"));
 			cust1.setSsn(rs.getString("SSN"));
 			cust1.setPhone(rs.getString("PHONE"));
 			cust1.setPostalCode(rs.getString("POSTAL_CODE"));
