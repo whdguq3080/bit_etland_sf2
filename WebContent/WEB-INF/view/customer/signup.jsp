@@ -16,7 +16,7 @@
 		</div><br />
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">회원 이름</span> <input
-				type="text" id="customersName" name="customersName"
+				type="text" id="customerName" name="customerName"
 				class="form-control" placeholder="이름 입력"
 				aria-describedby="basic-addon1">
 		</div><br />
@@ -37,17 +37,17 @@
 		</div><br />
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">주소</span> <input
-				type="text" id="postalcode" name="postalcode" class="form-control"
-				placeholder="주소를 입력하시오" aria-describedby="basic-addon1">
-		</div><br />
-		<div class="input-group">
-			<span class="input-group-addon" id="basic-addon1">우편번호</span> <input
 				type="text" id="city" name="city" class="form-control"
-				placeholder="상세주소를 입력하시오" aria-describedby="basic-addon1">
+				placeholder="주소를 입력하시오" aria-describedby="basic-addon1">
 		</div><br />
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">상세주소</span> <input
 				type="text" id="address" name="address" class="form-control"
+				placeholder="상세주소를 입력하시오" aria-describedby="basic-addon1">
+		</div><br />
+		<div class="input-group">
+			<span class="input-group-addon" id="basic-addon1">우편번호</span> <input
+				type="text" id="postal_Code" name="postal_Code" class="form-control"
 				placeholder="우편번호를 입력하시오" aria-describedby="basic-addon1">
 		</div><br /><br />
 		<div class="input-group">
@@ -62,6 +62,7 @@
 		<input type="hidden" name="cmd" value="signup"/>
 		<input type="hidden" name="page" value="signin"/>
 </div>
+</div>
 </form>
 </div>
 <jsp:include page="../home/bottom.jsp"></jsp:include>
@@ -69,7 +70,8 @@
 	$('#confirm_btn').click(function() {
 	$('#form')
 	.attr('action', '${ctx}/customer.do').submit();
-		});
+		
+	});
 	
 	$('#cancel_btn').click(function() {
 			alert('취소버튼클릭!!');

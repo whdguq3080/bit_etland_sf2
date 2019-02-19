@@ -13,9 +13,9 @@ public enum CustomerSQL {
 					+ "PASSWORD,"
 					+ "SSN,"
 					+ "PHONE,"
-					+ "POSTALCODE,"
 					+ "CITY,"
 					+ "ADDRESS,"
+					+ "POSTAL_CODE"
 					+ ")"
 					+" VALUES("
 					+" ? , ? , ? , ? , ? , ? , ? , ?)");

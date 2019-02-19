@@ -36,6 +36,9 @@ public class Commander {
 		case CUST_UPDATE:
 			cmd = new UpdateCommand(pxy);
 			break;
+		case CUST_FILE_UPLOAD:
+			cmd = new FileCommand(pxy);
+			break;
 		default:
 			break;
 		}

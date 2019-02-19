@@ -4,9 +4,9 @@
 /domain/
 /enums/
 /factory/
+/iterator/
 /pool/
 /proxy/
 /service/
 /sql/
 /test/
-/iterator/

@@ -9,7 +9,16 @@
 </div>
 <div class="grid-item" id= "side_bar">
 <div class= "myphoto">
-<div class= "myphotoin"><img src="${img}/default_image.png" ></div>
+<div class= "myphotoin">
+<form id="file_form">
+	<img src="${img}/${image.imgName}.${image.imgExtention}" style="width:500px; height:500px;" ><br />
+	<input type="file" name="file_upload" />
+	<input type="submit" id="file_upload_btn" />
+</form>
+<div class="btn-group" role="group">
+    <span id="photo_btn" class="label label-success">이미지 수정</span>
+</div>
+</div>
 </div>
 </div>
 <form id="form" >
@@ -19,17 +28,15 @@
 이 름 ${cust.customerName} <br />
 생년월일 ${cust.ssn} <br />
 성별 : 남 <br /> 
-주소 : 	<input type="text" name="city" placeholder="${cust.city}" /> <br />
-상세주소 : <input type="text" name="address"   placeholder="${cust.address}" /> <br />
-우편번호 : <input type="text" name="postalCode" placeholder="${cust.postalCode}"/> <br />
-비밀번호 : ${cust.password} 
-</div>
+주소 : ${cust.city} <br />
+상세주소 : ${cust.address}<br />
+우편번호 : ${cust.postalCode}<br />
 <div class="btn-group" role="group">
     <span id="update_btn" class="label label-warning">수정 </span>
+    <span id="delete_btn" class="label label-danger">탈퇴</span>
 </div>
-<div class="btn-group" role="group">
-    <span id="update_btn" class="label label-danger">탈퇴</span>
 </div>
+
 </form>
 <jsp:include page="../home/bottom.jsp"/>
 </html>
@@ -37,5 +44,12 @@
 $('#update_btn').click(function(){
 		alert('수정 버튼 클릭');
 	location.assign('${ctx}/customer.do?cmd=cust_retrieve&page=update&customerID=${cust.customerID}');
+});
+$('#file_upload_btn').attr('style','cursor:pointer').click(function(){
+		$('#file_form')
+		.attr('method','post')
+		.attr('action','${ctx}/customer.do?cmd=cust_file_upload&page=detail&customer_id=${cust.customerID}')
+		.attr('enctype','multipart/form-data')
+		.submit();
 });
 </script>

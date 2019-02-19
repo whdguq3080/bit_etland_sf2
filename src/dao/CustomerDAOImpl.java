@@ -1,26 +1,31 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import domain.CustomerDTO;
 import enums.CustomerSQL;
 import enums.Vendor;
 import factory.DatabaseFactory;
+import proxy.ImageProxy;
 import proxy.PageProxy;
 import proxy.Pagination;
 import proxy.Proxy;
 
 public class CustomerDAOImpl implements CustomerDAO {
 	private static CustomerDAOImpl instance = new CustomerDAOImpl();
-	private CustomerDAOImpl() {}
+	Connection conn;
+	public CustomerDAOImpl() {
+		conn = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection();
+	}
+	
+	
 	public static CustomerDAOImpl getInstance() {
 		return instance;
 	}
@@ -29,15 +34,15 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public void insertCustomer(CustomerDTO cus) {
 		try {
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection()
-					.prepareStatement(CustomerSQL.COUNT.toString());
+					.prepareStatement(CustomerSQL.SIGNUP.toString());
 			ps.setString(1, cus.getCustomerID());
 			ps.setString(2, cus.getCustomerName());
 			ps.setString(3, cus.getPassword());
 			ps.setString(4, cus.getSsn());
 			ps.setString(5, cus.getPhone());
-			ps.setString(6, cus.getPostalCode());
-			ps.setString(7, cus.getCity());
-			ps.setString(8, cus.getAddress());
+			ps.setString(6, cus.getCity());
+			ps.setString(7, cus.getAddress());
+			ps.setString(8, cus.getPostalCode());
 			ps.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -239,5 +244,31 @@ public class CustomerDAOImpl implements CustomerDAO {
 		System.out.println("조회된 결과"+ cust1.toString());
 		return cust1;
 	}
+	public CustomerDTO selectProfile(Proxy pxy) {
+		CustomerDTO cust = new CustomerDTO();
+		try {
+			String sql = "";
+			ImageProxy ipxy = (ImageProxy)pxy;
+			ImageDAOImpl
+			.getInstance()
+			.insertImage(ipxy.getImg());
+			
+			String imgSeq =ImageDAOImpl.getInstance().lastImageSeq();
+			
+			sql = "UPDATE CUSTOMERS SET PHOTO = ? WHERE CUSTOMER_ID LIKE ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, imgSeq);
+			ps.setString(2, ipxy.getImg().getOwner());
+			
+			cust.setCustomerID(ipxy.getImg().getOwner());
+			
+			ResultSet rs = ps.executeQuery();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cust;
+	}
+	
 	}
 
