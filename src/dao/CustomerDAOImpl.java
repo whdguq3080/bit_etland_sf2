@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import domain.CustomerDTO;
+import domain.ImageDTO;
 import enums.CustomerSQL;
 import enums.Vendor;
 import factory.DatabaseFactory;
@@ -244,8 +245,10 @@ public class CustomerDAOImpl implements CustomerDAO {
 		System.out.println("조회된 결과"+ cust1.toString());
 		return cust1;
 	}
-	public CustomerDTO selectProfile(Proxy pxy) {
+	public Map<String, Object> selectProfile(Proxy pxy) {
 		CustomerDTO cust = new CustomerDTO();
+		ImageDTO img = new ImageDTO();
+		Map<String, Object> map = new HashMap<String,Object>();
 		try {
 			String sql = "";
 			ImageProxy ipxy = (ImageProxy)pxy;
@@ -254,20 +257,22 @@ public class CustomerDAOImpl implements CustomerDAO {
 			.insertImage(ipxy.getImg());
 			
 			String imgSeq =ImageDAOImpl.getInstance().lastImageSeq();
-			
 			sql = "UPDATE CUSTOMERS SET PHOTO = ? WHERE CUSTOMER_ID LIKE ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, imgSeq);
 			ps.setString(2, ipxy.getImg().getOwner());
-			
 			cust.setCustomerID(ipxy.getImg().getOwner());
-			
-			ResultSet rs = ps.executeQuery();
+			cust = selectCustomer(cust);
+			img = ImageDAOImpl
+					.getInstance()
+					.selectImage(cust);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return cust;
+		map.put("img",img);
+		map.put("cust",cust);
+		return map;
 	}
 	
 	}

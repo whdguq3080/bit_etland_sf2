@@ -2,10 +2,14 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import domain.CustomerDTO;
 import domain.ImageDTO;
+import enums.ImageSQL;
+import enums.Props;
 import enums.Vendor;
 import factory.DatabaseFactory;
 import proxy.ImageProxy;
@@ -22,13 +26,16 @@ public class ImageDAOImpl implements ImageDAO {
 	}
 	@Override
 	public void insertImage(ImageDTO img) {
-		String sql = "";
 		try {
-			PreparedStatement ps = 
-					DatabaseFactory
-					.createDatabase(Vendor.ORACLE)
-					.getConnection().prepareStatement(sql);
-					 ps.executeUpdate();
+			String sql = ImageSQL.INSERT_IMAGE.toString();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, img.getImgName());
+			ps.setString(2, img.getImgExtention());
+			ps.setString(3, img.getOwner());
+			int rs = ps.executeUpdate();
+			if(rs==1) {
+				System.out.println("성공");
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,9 +44,23 @@ public class ImageDAOImpl implements ImageDAO {
 	}
 
 	@Override
-	public ImageDTO selectImage(ImageDTO img) {
-		// TODO Auto-generated method stub
-		return null;
+	public ImageDTO selectImage(CustomerDTO cust) {
+		ImageDTO image = new ImageDTO();
+		try {
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM IMAGE WHERE OWNER LIKE ?");
+			ps.setString(1,cust.getCustomerID());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+			image.setImgSeq(rs.getString("IMG_SEQ"));
+			image.setImgName(rs.getString("IMG_NAME"));
+			image.setImgExtention(rs.getString("IMG_EXTENTION"));
+			image.setOwner(rs.getString("OWNER"));
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return image;
 	}
 
 	@Override
@@ -73,10 +94,19 @@ public class ImageDAOImpl implements ImageDAO {
 	}
 	@Override
 	public String lastImageSeq() {
-		// TODO Auto-generated method stub
-		return null;
+		String lastImage = "";
+		CustomerDTO cus = new CustomerDTO();
+		try {
+			String sql = ImageSQL.LAST_IMAGE_SEQ.toString();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				lastImage = rs.getString("IMG_SEQ");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lastImage;
 	}
-	
-
-
 }
