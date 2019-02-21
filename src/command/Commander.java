@@ -27,7 +27,7 @@ public class Commander {
 		case ACCESS : case SIGNIN :
 			cmd = new ExistCommand(pxy);
 			break;
-		case CUST_LIST:
+		case CUST_LIST : case PRODUCT_LIST:
 			cmd = new ListCommand(pxy);
 			break;
 		case CUST_RETRIEVE:
@@ -39,6 +39,9 @@ public class Commander {
 		case CUST_FILE_UPLOAD:
 			cmd = new FileCommand(pxy);
 			break;
+		case CUST_DELETE:
+			cmd = new DeleteCommand(pxy);
+			break;	
 		default:
 			break;
 		}

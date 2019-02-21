@@ -19,10 +19,10 @@
   font-size: 20px;
 }
 #navi_bar li a:hover {
-  background-color: #555;
-  color: white;
+  background-color: #004080;
+  color: #68ceff;
 }
 #navi_bar li a.active {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #0080c0;
+  color: #68ceff;
 }

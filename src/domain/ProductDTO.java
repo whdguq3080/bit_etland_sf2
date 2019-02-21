@@ -2,7 +2,8 @@ package domain;
 import lombok.Data;
 public @Data class ProductDTO {
 	private String productsID,
-					ptoductName,
+					rnum,
+					productName,
 					supplierID,
 					categoryID,
 					unit,

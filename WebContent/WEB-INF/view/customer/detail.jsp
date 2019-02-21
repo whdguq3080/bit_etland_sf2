@@ -45,6 +45,10 @@ $('#update_btn').click(function(){
 		alert('수정 버튼 클릭');
 	location.assign('${ctx}/customer.do?cmd=cust_retrieve&page=update&customerID=${cust.customerID}');
 });
+$('#delete_btn').click(function(){
+	alert('탈퇴가 완료 되었습니다.');
+location.assign('${ctx}/customer.do?cmd=cust_delete&dir=home&page=main&customer_id=${cust.customerID}');
+});
 $('#file_upload_btn').attr('style','cursor:pointer').click(function(){
 		$('#file_form')
 		.attr('method','post')

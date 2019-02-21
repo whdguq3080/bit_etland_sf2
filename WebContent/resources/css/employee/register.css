@@ -52,7 +52,7 @@
 
 #form input[type=submit] {
   width: 100%;
-  background-color: #4CAF50;
+  background-color: #0080c0;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -62,11 +62,11 @@
 }
 
 #form input[type=submit]:hover {
-  background-color: #45a049;
+  background-color: #8080c0;
 }
 #form input[type=reset] {
   width: 100%;
-  background-color: #af544c;
+  background-color: #8080ff;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -75,10 +75,10 @@
   cursor: pointer;
 }
 #form input[type=reset]:hover {
-  background-color: #af544c;
+  background-color: #0080c0;
 }
 #form div {
   border-radius: 5px;
-  background-color: white;
+  background-color: #8080c0;
   padding: 20px;
 }

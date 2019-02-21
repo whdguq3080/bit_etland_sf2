@@ -17,8 +17,9 @@ public interface CustomerService {
 	public int countCustomer(Proxy pxy);
 	public boolean existsCustomer(CustomerDTO cus);
 	
-	public void modifyCustomer(CustomerDTO cus);
 	public Map<String, Object> fileUpload(Proxy pxy);
+
+	public void modifyCustomer(CustomerDTO cus);
 	public void removeCustomer(CustomerDTO cus);
 	
 	public Map<String, Object> retrievePhone(Proxy pxy);

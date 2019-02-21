@@ -61,6 +61,7 @@ public class ExistCommand extends Command  {
 			if(cus != null) {
 				System.out.println("로그인 성공");
 				session.setAttribute("customer", cus);
+				System.out.println("세션에 들어있는 이름"+((CustomerDTO)session.getAttribute("customer")).getCustomerName());
 			}else {
 				System.out.println("로그인 실패");
 				super.setDomain("customer");

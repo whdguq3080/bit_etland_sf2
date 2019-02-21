@@ -66,6 +66,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 				dto = new CustomerDTO();
 				dto.setCustomerID(rs.getString("CUSTOMER_ID"));
 				dto.setPassword(rs.getString("PASSWORD"));
+				dto.setCustomerName(rs.getString("CUSTOMER_NAME"));
+				dto.setSsn(rs.getString("SSN"));
+				dto.setCity(rs.getString("CITY"));
+				dto.setAddress(rs.getString("ADDRESS"));
+				dto.setPostalCode(rs.getString("POSTALCODE"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -104,10 +109,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 	              System.out.println("방금 담은 값 :" +cust.getCustomerName());
 	              list.add(cust);
 			}
-			System.out.println("1번회원: "+ list.get(0).getCustomerName());
-			System.out.println("2번회원: "+ list.get(1).getCustomerName());
-			System.out.println("3번회원: "+ list.get(2).getCustomerName());
-			System.out.println("4번회원: "+ list.get(3).getCustomerName());
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -175,10 +176,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public void deleteCustomer(CustomerDTO cus) {
 		try {
-			String sql = "";
+			String sql = CustomerSQL.CUST_DELETE.toString();
 			PreparedStatement ps = DatabaseFactory.createDatabase(Vendor.ORACLE).getConnection().prepareStatement(sql);
-			ps.setString(1, "");
+			ps.setString(1, cus.getCustomerID());
 			int rs = ps.executeUpdate();
+			if(rs==1) {
+				System.out.println("딜리트커스터머 입장"+rs);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -12,29 +12,25 @@
  	</h1>
 </div>
 <div class="grid-item" id="content">
-	<table id="cust_tab">
+	<table id="pro_tab">
 	  <tr>
 	    <th>No.</th>
 	    <th>아이디</th>
-	    <th>이 름</th>
-	    <th>생년월일 </th>
-	    <th>성 별</th>
-	    <th>전화번호</th>
-	    <th>우편번호</th>
-	    <th>지번주소</th>
-	    <th>상세주소</th>
+	    <th>제품명</th>
+	    <th>공급처</th>
+	    <th>카테고리</th>
+	    <th>분류</th>
+	    <th>가격</th>
 	  </tr>
-	  <c:forEach items="${list}" var="cust">
+	  <c:forEach items="${list}" var="pro">
 	  <tr>
-	    <td>${cust.rnum}</td>
-	    <td>${cust.customerID}</td>
-	    <td><a href="${ctx}/customer.do?cmd=cust_retrieve&page=detail&customerID=${cust.customerID}">${cust.customerName}</a></td>
-	    <td>${cust.ssn}</td>
-	    <td>남</td>
-	    <td>${cust.phone}</td>
-	    <td>${cust.postalCode}</td>
-	    <td>${cust.city}</td>
-	    <td>${cust.address}</td>
+	    <td>${pro.rnum}</td>
+	    <td>${pro.productsID}</td>
+	    <td>${pro.productName}</td>
+	    <td>${pro.supplierID}</td>
+	    <td>${pro.categoryID}</td>
+	    <td>${pro.unit}</td>
+	    <td>${pro.price}</td>
 	  </tr>
 	  </c:forEach>
 	  
@@ -43,7 +39,7 @@
 	<div class="center">
 	  <div class="pagination">
 		<c:if test="${pagination.existPrev}">
-		   <a href='${ctx}/customer.do?cmd=cust_list&page=list&page_num=${pagination.prevBlock}'>&laquo;</a>
+		   <a href='${ctx}/product.do?cmd=product_list&page=list&page_num=${pagination.prevBlock}'>&laquo;</a>
 		</c:if>
 	 	<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" varStatus="status">
 	 	 <c:choose>
@@ -55,11 +51,9 @@
 	 	  	</c:otherwise>
 	 	 </c:choose>
 
-
-
 	 	</c:forEach>
 	 	<c:if test="${pagination.existNext}">
-		  <a href='${ctx}/customer.do?cmd=cust_list&page=list&page_num=${pagination.nextBlock}'>&raquo;</a>
+		  <a href='${ctx}/product.do?cmd=product_list&page=list&page_num=${pagination.nextBlock}'>&raquo;</a>
 	 	</c:if>
 	  </div>
 	</div>
@@ -68,8 +62,8 @@
 <script>
  $('.page').click(function(){
  		alert('--클릭한 페이지--'+$(this).text());
-
- location.assign('${ctx}/customer.do?cmd=cust_list&page=list&page_num='+$(this).text());
+ 		
+ location.assign('${ctx}/product.do?cmd=product_list&page=list&page_num='+$(this).text());
  });
 	//page_um,pageSize,
 	//?cmd=list&page=list&page_num=2&page_size=5
@@ -78,4 +72,5 @@
 	    <input type="hidden" name="dir" value="customer" />
 	    <input type="hidden" name="page" value="list" />
 	*/
+	
 </script>
