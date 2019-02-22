@@ -2,12 +2,11 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="../home/top.jsp"/>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" 
-	href="${css}/customer/list.css" />
+<link rel="stylesheet" href="${css}/customer/list.css"/>
 <div class="grid-item" id="nav">
 	<jsp:include page="../employee/nav.jsp"/>
 </div>
-<div class="grid-item" id= "side_bar">
+<div class="grid-item" id="side_bar">
 <div class= "myphoto">
 <div class= "myphotoin">
 <form id="file_form">

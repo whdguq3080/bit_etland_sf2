@@ -12,7 +12,7 @@
 
 			<span class="input-group-addon" id="basic-addon1">아이디</span> <input
 				type="text" id="customerID" name="customerID" class="form-control"
-				placeholder="ID 입력" aria-describedby="basic-addon1">
+				placeholder="ID 입력" aria-describedby="basic-addon1" >
 		</div><br />
 		<div class="input-group">
 			<span class="input-group-addon" id="basic-addon1">회원 이름</span> <input

@@ -27,7 +27,7 @@ public class Commander {
 		case ACCESS : case SIGNIN :
 			cmd = new ExistCommand(pxy);
 			break;
-		case CUST_LIST : case PRODUCT_LIST:
+		case CUST_LIST : case PRODUCT_LIST: case CATEGORY_LIST:
 			cmd = new ListCommand(pxy);
 			break;
 		case CUST_RETRIEVE:

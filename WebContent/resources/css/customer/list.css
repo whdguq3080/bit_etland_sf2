@@ -1,34 +1,42 @@
 @charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 #nav{
     grid-column-start: 1;
     grid-column-end: 5;
+    font-family: 'Nanum Pen Script', serif;
 }
 #side_menu{
     grid-column-start: 1;
     grid-column-end: 2;
+    font-family: 'Nanum Pen Script', serif;
 }
 #content{
     grid-column-start: 2;
     grid-column-end: 5;
+    font-family: 'Nanum Pen Script', serif;
 }
 #cust_tab {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+ font-family: 'Nanum Pen Script', serif;
 }
 #cust_tab td, th {
-  border: 1px solid #dddddd;
+  border: 1px solid #4a6da2;
   text-align: left;
   padding: 8px;
+font-family: 'Nanum Pen Script', serif;
 }
 #cust_tab tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #83bbfa;
+  font-family: 'Nanum Pen Script', serif;
 }
 .center {
   text-align: center;
+   font-family: 'Nanum Pen Script', serif;
 }
 .pagination {
-  display: inline-block;
+  display: inline-blue;
 }
 .pagination a {
   color: black;
@@ -36,14 +44,14 @@
   padding: 8px 16px;
   text-decoration: none;
   transition: background-color .3s;
-  border: 1px solid #ddd;
+  border: 1px solid #97baee;
   margin: 0 4px;
 }
 .pagination a.active {
-  background-color: #4CAF50;
+  background-color: #b0e2f2;
   color: white;
-  border: 1px solid #4CAF50;
+  border: 1px solid #b0e2f2;
 }
 .pagination a:hover:not(.active) {
-    background-color: #ddd;
+    background-color: #b0e2f2;
 }

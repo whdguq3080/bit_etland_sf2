@@ -6,6 +6,7 @@ import domain.CustomerDTO;
 import domain.EmployeeDTO;
 import enums.Action;
 import lombok.Data;
+import service.CategoryServiceImpl;
 import service.CustomerServiceImpl;
 import service.EmployeeServiceImpl;
 import service.ProductServiceImpl;
@@ -35,6 +36,9 @@ public class Pagination implements Proxy {
 			break;
 		case PRODUCT_LIST:
 			rowCount = ProductServiceImpl.getInstance().countProduct(null);
+			break;
+		case CATEGORY_LIST:
+			rowCount = CategoryServiceImpl.getInstance().countCategorie(null);
 			break;
 		default:
 			break;

@@ -8,12 +8,15 @@
 <div class="grid-item" id="content">
 <form id="form" name="form" >
 	<div class="grid-container">
-	    <div class="grid-item" id="item_1">회원아이디</div>
+	    <div class="grid-item" id="item_1" >회원아이디</div>
 	    <div class="grid-item" id="item_2"><input type="text" id="customerID" name="CUSTOMER_ID" ></div>
-	    <div class="grid-item" id="item_3">비밀번호</div>
-	    <div class="grid-item" id="item_4"><input type="text" id="password" name="PASSWORD"  ></div>
-	    <div class="grid-item" id="item_11"><input type="submit" id="confirm_btn" value='확 인'></div>
-	    <div class="grid-item" id="item_12"><input type="reset" id="cancel_btn" value='취 소'> </div>
+	    <div class="grid-item" id="item_3" >비밀번호</div>
+	    <div class="grid-item" id="item_4">
+	    <input type="text" id="password" name="PASSWORD"></div>
+	    <div class="grid-item" id="item_11">
+	    <input type="submit" id="confirm_btn"value='확 인' ></div>
+	    <div class="grid-item" id="item_12">
+	    <input type="reset" id="cancel_btn" value='취 소'> </div>
 	    <input type="hidden" name="cmd" value="signin" />
 	    <input type="hidden" name="dir" value="category" />
 	    <input type="hidden" name="page" value="main" />

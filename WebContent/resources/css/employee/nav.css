@@ -1,28 +1,31 @@
 @charset "UTF-8";
-
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 #navi_bar {
   list-style-type: none;
   margin: 0;
   padding: 0;
-/*   width: 800px;  */
   overflow: hidden;
-  
+   font-family: 'Nanum Pen Script', serif;
 }
 #navi_bar li {
   float: left;
+  font-family:'Nanum Pen Script', serif;
 }
 #navi_bar li a {
   display: block;
   padding: 8px 16px;
   text-align: center;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 40px;
+     font-family: 'Nanum Pen Script', serif;
 }
 #navi_bar li a:hover {
   background-color: #004080;
   color: #68ceff;
+    font-family: 'Nanum Pen Script', serif;
 }
 #navi_bar li a.active {
   background-color: #0080c0;
   color: #68ceff;
+  font-family: 'Nanum Pen Script', serif;
 }

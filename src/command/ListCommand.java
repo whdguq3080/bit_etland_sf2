@@ -1,18 +1,19 @@
 package command;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import domain.CustomerDTO;
+import domain.CategoryDTO;
 import domain.ProductDTO;
 import enums.Action;
 import proxy.PageProxy;
 import proxy.Pagination;
-import proxy.ProPagination;
 import proxy.Proxy;
 import proxy.RequestProxy;
+import service.CategoryServiceImpl;
 import service.CustomerServiceImpl;
 import service.ProductServiceImpl;
 
@@ -23,30 +24,28 @@ public class ListCommand extends Command {
 		super(pxy);
 		RequestProxy req = (RequestProxy) pxy.get("req");
 		HttpServletRequest request = req.getRequest();
+		Proxy paging = new Pagination();
+		Proxy pagePxy= new PageProxy();
+		paging.carryOut(request);
+		pagePxy.carryOut(paging);
+		List<?> list = new ArrayList<>();
 		switch (Action.valueOf(request.getParameter("cmd").toUpperCase())){
 		case CUST_LIST:
-			Proxy paging = new Pagination();
-			paging.carryOut(request);
-			Proxy pagePxy= new PageProxy();
-			pagePxy.carryOut(paging);
-			List<CustomerDTO> list = CustomerServiceImpl.getInstance().bringCustomerList(pagePxy);
-			request.setAttribute("list", list);
-			request.setAttribute("pagination", paging);
+			list = CustomerServiceImpl.getInstance().bringCustomerList(pagePxy);
 			break;
 		case PRODUCT_LIST:
-			paging = new Pagination();
-			paging.carryOut(request);
-			pagePxy= new PageProxy();
-			pagePxy.carryOut(paging);
 			ProductDTO pro = new ProductDTO();
 			pro.setProductsID(request.getParameter("PRODUCTS_ID"));
-			List<ProductDTO> productlist = ProductServiceImpl.getInstance().bringProductList(pagePxy);
-			request.setAttribute("list", productlist);
-			request.setAttribute("pagination", paging);
+			list = ProductServiceImpl.getInstance().bringProductList(pagePxy);
+			break;
+		case CATEGORY_LIST:
+			list = CategoryServiceImpl.getInstance().bringCategorieList(pagePxy);
 			break;
 			default:
 			break;
 	}
+		request.setAttribute("list", list);
+		request.setAttribute("pagination", paging);
 }
 }
 		

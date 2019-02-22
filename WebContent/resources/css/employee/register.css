@@ -1,42 +1,52 @@
 @charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 /* center */
 #side_menu{
     grid-column-start: 1;
     grid-column-end: 2;
+  font-family: 'Nanum Pen Script', serif;
 }
 #content{
     grid-column-start: 2;
     grid-column-end: 5;
+      font-family: 'Nanum Pen Script', serif;
 }
 
 /* content */
 #item_2{
     grid-column-start: 2;
     grid-column-end: 5;
+  font-family: 'Nanum Pen Script', serif;
 }
 #item_4{
     grid-column-start: 2;
     grid-column-end: 5;
+     font-family: 'Nanum Pen Script', serif;
 }
 #item_6{
     grid-column-start: 2;
     grid-column-end: 5;
+     font-family: 'Nanum Pen Script', serif;
 }
 #item_8{
     grid-column-start: 2;
     grid-column-end: 5;
+     font-family: 'Nanum Pen Script', serif;
 }
 #item_10{
     grid-column-start: 2;
     grid-column-end: 5;
+   font-family: 'Nanum Pen Script', serif;
 }
 #item_11{
     grid-column-start: 1;
     grid-column-end: 3;
+    font-family: 'Nanum Pen Script', serif;
 }
 #item_12{
     grid-column-start: 3;
     grid-column-end: 5;
+    font-family: 'Nanum Pen Script', serif;
 }
 
 /* form */ 
@@ -48,6 +58,8 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  font-family: 'Nanum Pen Script', serif;
+  font-size: 23px;
 }
 
 #form input[type=submit] {
@@ -59,26 +71,31 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+     font-family: 'Nanum Pen Script', serif;
 }
 
 #form input[type=submit]:hover {
   background-color: #8080c0;
+    font-family: 'Nanum Pen Script', serif;
 }
 #form input[type=reset] {
   width: 100%;
-  background-color: #8080ff;
+  background-color: #337ab7c7;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+    font-family: 'Nanum Pen Script', serif;
 }
 #form input[type=reset]:hover {
   background-color: #0080c0;
+   font-family: 'Nanum Pen Script', serif;
 }
 #form div {
   border-radius: 5px;
-  background-color: #8080c0;
+  background-color: #d9edf7;
   padding: 20px;
+  font-family: 'Nanum Pen Script', serif;
 }
