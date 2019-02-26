@@ -12,7 +12,19 @@
     	<a href="#" id="emp_register">사원등록</a><br />
     	<a href="#" id="emp_access">접속승인</a>
     </div>
+       <div class="grid-item" id="left">
+    	고객 전용<br /><br />
+    	<h1 href="#" id="cust_join">알고리즘</a></h1>
+    	<a href="#" id="algo_access">접속하기</a>
+    </div>
+    <div class="grid-item" id="right">
+    	직원 전용<br /><br />
+    	<a href="#" id="emp_register">객체지향</a><br />
+    	<a href="#" id="oop_access">접속하기</a>
+    </div>
+    
 <jsp:include page="bottom.jsp"/>  
+<script src="${js}oop.js"> </script>
 <script>
 $('#cust_join').click(()=>{
 	location.assign('customer.do?cmd=move&page=signup');
@@ -25,5 +37,8 @@ $('#emp_register').click(()=>{
 });
 $('#emp_access').click(()=>{
 	location.assign('employee.do?cmd=move&page=access');
+});
+$('#oop_access').click(()=>{
+	inherit.main();
 });
 </script>

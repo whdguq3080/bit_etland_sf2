@@ -1,0 +1,72 @@
+"use strict";
+var inherit = (()=>{
+	return{
+		main : ()=>{
+		let emp1 = new Employee();
+		emp1.setSalary("100")
+		emp1.setPosition("대리");
+		alert("직급,급여 :"+emp1.getSalary()+','+emp1.getPosition()); 
+		
+		let cust1 = new Customer();
+		cust1.setCustNo('1234');
+		cust1.setGrade('실버등급');
+		alert("고객 번호, 등급: "+cust1.getCustNo()+','+cust1.getGrade());
+		}
+	};
+})();
+
+function Employee(){
+	let _salary, _position;
+	return{
+		setSalary : (salary)=>{this._salary = salary;},
+		setPosition :(position)=>{this._position = position;},
+		getSalary : ()=>{return this._salary;},
+		getPosition: ()=>{return this._position;}
+	};
+};
+function Customer(){
+	let _custNo,_grade;
+	return{
+		setCustNo : (custNo)=>{this._custNo=custNo;},
+		setGrade : (grade)=>{this._grade=grade;},
+		getCustNo : ()=>{return this._custNo;},
+		getGrade  :()=>{return this._grade;},
+	};
+};
+
+
+var encap = (()=>{
+	var main =()=>{
+		person.setName('도널드 트럼프');
+		person.setAge('73');
+		person.setGender('남');
+		person.setJob('미국 대통령');
+		alert('스펙: '+person.toString());
+	}
+	return {main:main};
+})();
+var person = (()=>{
+	let _name,_age,_gender,_job;
+	var setName = (name)=>{this._name = name;}
+	var setAge = (age)=>{this._age = age;}
+	var setGender = (gender)=>{this._gender = gender;}
+	var setJob = (job)=>{this._job = job;}
+	var getName = ()=>{return this._name;}
+	var getAge = ()=>{return this._age;}
+	var getGender = ()=>{return this._gender;}
+	var getJob = ()=>{return this._job;}
+	var toString = ()=>{
+		return this._name + ','+this._age + ','
+			+this._gender + ','+this._job
+	}
+	return {setName:setName,
+		setAge : setAge,
+		setGender : setGender,
+		setJob : setJob,
+		getName : getName,
+		getAge : getAge,
+		getGender : getGender,
+		getJob : getJob,
+		toString : toString
+	}
+})();
