@@ -39,6 +39,6 @@ $('#emp_access').click(()=>{
 	location.assign('employee.do?cmd=move&page=access');
 });
 $('#oop_access').click(()=>{
-	inherit.main();
+	test1.main();
 });
 </script>

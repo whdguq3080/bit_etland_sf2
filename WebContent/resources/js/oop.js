@@ -1,4 +1,52 @@
-"use strict";
+function People(name,age,gender,job){
+	this.name = name;
+	this.age = age;
+	this.gender= gender;
+	this.job = job;
+}
+function Cust(name,age,gender,job,grade,custNo){
+	People.call(this,name,age,gender,job);
+	this.grade = grade;
+	this.custNo = custNo;
+}
+
+var test1= (()=>{
+	let main = ()=>{
+		let cust = new Cust('홍길동','25세','남','개발자','3급','123');
+		alert('고객이름 : \n' + cust.name 
+				+ '고객나이 :\n' + cust.age 
+				+ '고객성별 :\n' + cust.gender 
+				+ '고객직업 :\n' + cust.job 
+				+ '고객등급 :\n' + cust.grade 
+				+'고객번호 :\n' + cust.custNo);
+	}
+	return {main: main};
+})();
+
+/*alert('고객정보 : 홍길동,25세,남,개발자,3급,123')
+*/
+function Product(name,price) {
+	this.name = name;
+	this.price = price;
+}
+function Food(name,price) {
+	Product.call(this, name, price);
+	this.category= 'food';
+}
+var test = (()=>{
+	let main = ()=>{
+		let food = new Food('cheese',5);
+		alert(food.category);
+		alert(food.name);
+	}
+	return {main : main};
+})();
+
+
+
+
+
+
 var inherit = (()=>{
 	return{
 		main : ()=>{
@@ -12,7 +60,7 @@ var inherit = (()=>{
 		cust1.setGrade('실버등급');
 		alert("고객 번호, 등급: "+cust1.getCustNo()+','+cust1.getGrade());
 		}
-	};
+	}
 })();
 
 function Employee(){
@@ -22,8 +70,8 @@ function Employee(){
 		setPosition :(position)=>{this._position = position;},
 		getSalary : ()=>{return this._salary;},
 		getPosition: ()=>{return this._position;}
-	};
-};
+	}
+}
 function Customer(){
 	let _custNo,_grade;
 	return{
@@ -31,8 +79,8 @@ function Customer(){
 		setGrade : (grade)=>{this._grade=grade;},
 		getCustNo : ()=>{return this._custNo;},
 		getGrade  :()=>{return this._grade;},
-	};
-};
+	}
+}
 
 
 var encap = (()=>{
